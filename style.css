@@ -48,6 +48,34 @@ body {
   padding: 0 2rem;
 }
 
+/* Nav icons (top-right) */
+
+.game-link {
+  position: fixed;
+  top: 1.25rem;
+  right: 4.5rem;
+  background: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  z-index: 10;
+}
+
+.game-link:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.game-link img {
+  display: block;
+  border-radius: 4px;
+}
+
 /* Theme toggle */
 
 .theme-toggle {

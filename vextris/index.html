@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VexTris</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+
+  #topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: #111;
+    border-bottom: 1px solid #222;
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+  #topbar a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  #topbar a:hover {
+    color: #ccc;
+  }
+
+  #topbar .title {
+    color: #ccc;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 37px);
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+  }
+
+  #controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+  }
+
+  #status {
+    color: #999;
+    font-family: monospace;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .btn {
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 16px;
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    background: linear-gradient(to bottom, #ff5c4d, #e74c3c);
+    box-shadow: 0 0 12px rgba(231,76,60,0.6);
+  }
+
+  #btn-pause {
+    background: linear-gradient(to bottom, #3a6fd8, #2956B2);
+  }
+
+  #btn-pause:hover {
+    background: linear-gradient(to bottom, #4a7fe8, #3a6fd8);
+    box-shadow: 0 0 12px rgba(58,111,216,0.6);
+  }
+
+  #hints {
+    color: #555;
+    font-family: monospace;
+    font-size: 11px;
+    text-align: center;
+    padding: 4px 12px;
+  }
+
+  #overlay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+    font-family: monospace;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <a href="../">&#8592; venelinpetkov.com</a>
+  <span class="title"><img src="../vextris-icon.png" alt="" width="20" height="20" style="vertical-align: middle; margin-right: 6px;">VexTris</span>
+</div>
+
+<div id="container">
+  <canvas id="game"></canvas>
+  <div id="controls">
+    <span id="status">Press New Game to start</span>
+    <button class="btn" id="btn-new">New Game</button>
+    <button class="btn" id="btn-pause">Pause</button>
+  </div>
+  <div id="hints">&#8592; &#8594; Move &nbsp;|&nbsp; &#8593; &#8595; Rotate &nbsp;|&nbsp; Space Drop &nbsp;|&nbsp; N New Game &nbsp;|&nbsp; P Pause</div>
+</div>
+
+<div id="overlay"></div>
+
+<script src="dist/vextris.js"></script>
+<script>
+  document.getElementById('btn-new').addEventListener('click', function () {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+  });
+  document.getElementById('btn-pause').addEventListener('click', function () {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'p' }));
+  });
+
+  // Fix canvas size to leave room for topbar (37px) + controls (32px) + hints (24px) + padding
+  function fixSize() {
+    var canvas = document.getElementById('game');
+    var availH = window.innerHeight - 37 - 70;
+    canvas.style.maxHeight = availH + 'px';
+  }
+  fixSize();
+  window.addEventListener('resize', fixSize);
+</script>
+</body>
+</html>
