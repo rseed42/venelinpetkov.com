@@ -1,0 +1,374 @@
+/* Light theme (default in :root, overridden by data-theme) */
+:root {
+  --bg: #f5f5f0;
+  --bg-surface: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #555566;
+  --accent: #2a9d8f;
+  --accent-hover: #21867a;
+  --border: #dddde0;
+  --toggle-bg: #e5e5e5;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --bg-surface: #22223a;
+  --text: #e0e0e8;
+  --text-secondary: #9a9ab0;
+  --accent: #7ecec6;
+  --accent-hover: #a3e0da;
+  --border: #2e2e48;
+  --toggle-bg: #2e2e48;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+
+.hero,
+.section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Theme toggle */
+
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--toggle-bg);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  z-index: 10;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+/* Hero — two-column */
+
+.hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hero-text {
+  text-align: left;
+}
+
+h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+  color: var(--text);
+}
+
+[data-theme="dark"] h1 {
+  color: #fff;
+}
+
+.tagline {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 480px;
+}
+
+/* Section labels */
+
+.section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+/* Sections */
+
+.section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-top: 1px solid var(--border);
+}
+
+h2 {
+  font-family: "Instrument Serif", serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] h2 {
+  color: #fff;
+}
+
+.section > p {
+  margin-bottom: 0.75rem;
+}
+
+.section > p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Links */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Timeline */
+
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-entry {
+  position: relative;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-entry::before {
+  content: "";
+  position: absolute;
+  left: -1.9375rem;
+  top: 1.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.timeline-period {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--bg);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-entry h3 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.15rem 0 0.15rem;
+}
+
+[data-theme="dark"] .timeline-entry h3 {
+  color: #fff;
+}
+
+.timeline-company {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Tags */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tags span {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Grid — 3 columns */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.grid-item {
+  padding: 1.25rem;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.grid-item h3 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+[data-theme="dark"] .grid-item h3 {
+  color: #fff;
+}
+
+.grid-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Education */
+
+.education-entry {
+  margin-bottom: 1rem;
+}
+
+.education-entry:last-child {
+  margin-bottom: 0;
+}
+
+.education-entry h3 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+[data-theme="dark"] .education-entry h3 {
+  color: #fff;
+}
+
+.education-entry p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Fade-in animation */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    gap: 1.5rem;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .subtitle {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
