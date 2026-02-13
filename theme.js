@@ -1,8 +1,8 @@
 (function () {
-  // Theme toggle
+  // Theme: load saved preference or detect system preference, default to light
   var saved = localStorage.getItem("theme");
   var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  var theme = saved || (prefersDark ? "dark" : "dark");
+  var theme = saved || (prefersDark ? "dark" : "light");
   document.documentElement.setAttribute("data-theme", theme);
 
   // Scroll fade-in

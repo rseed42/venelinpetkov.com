@@ -1,24 +1,27 @@
-/* Light theme (default in :root, overridden by data-theme) */
 :root {
-  --bg: #f5f5f0;
+  --bg: #fafaf7;
   --bg-surface: #ffffff;
-  --text: #1a1a2e;
-  --text-secondary: #555566;
-  --accent: #2a9d8f;
-  --accent-hover: #21867a;
-  --border: #dddde0;
-  --toggle-bg: #e5e5e5;
+  --text: #2d2d2d;
+  --text-secondary: #666670;
+  --accent: #1a3a5c;
+  --accent-hover: #0f2840;
+  --highlight: #c0392b;
+  --highlight-hover: #a93226;
+  --border: #e0e0dc;
+  --toggle-bg: #e5e5e0;
 }
 
 [data-theme="dark"] {
-  --bg: #1a1a2e;
-  --bg-surface: #22223a;
-  --text: #e0e0e8;
-  --text-secondary: #9a9ab0;
-  --accent: #7ecec6;
-  --accent-hover: #a3e0da;
-  --border: #2e2e48;
-  --toggle-bg: #2e2e48;
+  --bg: #1c1c1e;
+  --bg-surface: #2a2a2d;
+  --text: #e8e4df;
+  --text-secondary: #9a958e;
+  --accent: #6b9fd4;
+  --accent-hover: #5588bb;
+  --highlight: #c0392b;
+  --highlight-hover: #a93226;
+  --border: #3a3a3d;
+  --toggle-bg: #3a3a3d;
 }
 
 * {
@@ -28,10 +31,10 @@
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.75;
   transition: background 0.3s, color 0.3s;
   -webkit-font-smoothing: antialiased;
 }
@@ -69,16 +72,17 @@ body {
   opacity: 0.8;
 }
 
-[data-theme="dark"] .icon-sun { display: block; }
-[data-theme="dark"] .icon-moon { display: none; }
 .icon-sun { display: none; }
 .icon-moon { display: block; }
 
-/* Hero — two-column */
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* Hero — text left, photo right */
 
 .hero {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 2.5rem;
   padding-top: 6rem;
@@ -95,22 +99,21 @@ body {
 }
 
 h1 {
-  font-family: "Instrument Serif", serif;
-  font-size: 3rem;
-  font-weight: 400;
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 0.2rem;
-  color: var(--text);
-}
-
-[data-theme="dark"] h1 {
-  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+  color: var(--accent);
 }
 
 .tagline {
-  font-family: "Instrument Serif", serif;
-  font-size: 1.3rem;
-  color: var(--accent);
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--highlight);
   margin-bottom: 1rem;
 }
 
@@ -127,9 +130,9 @@ h1 {
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 0.35rem;
+  letter-spacing: 0.14em;
+  color: var(--highlight);
+  margin-bottom: 0.3rem;
 }
 
 /* Sections */
@@ -141,15 +144,11 @@ h1 {
 }
 
 h2 {
-  font-family: "Instrument Serif", serif;
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--text);
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--accent);
   margin-bottom: 1.25rem;
-}
-
-[data-theme="dark"] h2 {
-  color: #fff;
 }
 
 .section > p {
@@ -164,12 +163,15 @@ h2 {
 
 a {
   color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--highlight);
+  text-decoration-color: var(--highlight);
 }
 
 /* Timeline */
@@ -187,7 +189,6 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 6px;
-  transition: background 0.3s, border-color 0.3s;
 }
 
 .timeline-entry:last-child {
@@ -202,31 +203,27 @@ a:hover {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--highlight);
 }
 
 .timeline-period {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   padding: 0.15rem 0.55rem;
   border-radius: 3px;
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--highlight);
+  color: #fff;
   letter-spacing: 0.03em;
   margin-bottom: 0.35rem;
 }
 
 .timeline-entry h3 {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--accent);
   margin: 0.15rem 0 0.15rem;
-}
-
-[data-theme="dark"] .timeline-entry h3 {
-  color: #fff;
 }
 
 .timeline-company {
@@ -244,13 +241,12 @@ a:hover {
 }
 
 .tags span {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
   background: var(--bg);
   color: var(--text-secondary);
   border: 1px solid var(--border);
-  transition: background 0.3s, border-color 0.3s;
 }
 
 /* Grid — 3 columns */
@@ -266,20 +262,15 @@ a:hover {
   border-radius: 6px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  transition: background 0.3s, border-color 0.3s;
+  border-left: 3px solid var(--highlight);
 }
 
 .grid-item h3 {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--accent);
   margin-bottom: 0.25rem;
-}
-
-[data-theme="dark"] .grid-item h3 {
-  color: #fff;
 }
 
 .grid-item p {
@@ -298,14 +289,10 @@ a:hover {
 }
 
 .education-entry h3 {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--text);
-}
-
-[data-theme="dark"] .education-entry h3 {
-  color: #fff;
+  color: var(--accent);
 }
 
 .education-entry p {
@@ -340,6 +327,11 @@ a:hover {
 
   .hero-text {
     text-align: center;
+    order: 2;
+  }
+
+  .profile-photo {
+    order: 1;
   }
 
   .subtitle {
@@ -347,11 +339,11 @@ a:hover {
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .subtitle {
@@ -359,7 +351,7 @@ a:hover {
   }
 
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .grid {
